@@ -12,7 +12,7 @@ local element = createElement('type', { key = 'myKey', bar = 'bar' });
 ```
 
 The main entry point function adheres to
-[]`React.createElement`](https://reactjs.org/docs/react-api.html#createelement)
+[`React.createElement`](https://reactjs.org/docs/react-api.html#createelement)
 signature (`createElement(type, [props], [...children])`)
 
 See also [React Without JSX](https://reactjs.org/docs/react-without-jsx.html)
