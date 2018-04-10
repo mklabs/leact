@@ -2,38 +2,6 @@
 
 Reimplementing some of the basic concepts of React createElement in lua.
 
---[[
-<Panel>
-  <Text>Define your starting position</Text>
-  <Input name="position_x" />
-  <Input name="position_y" />
-  <Button onClick="onClickEvent">Apply</Button>
-</Panel>
---]]
--- local panel = e('Panel', null,
---   e('Text', { text = 'Define your starting position' }),
---   e('Input', { name = 'position_x' text = 'x' }),
---   e('Input', { name = 'position_y' teyt = 'y' }),
---   e('Button', { onClick = 'onClickEvent' }, 'Apply')
--- );
-
---[[
-<Panel>
-  <Text>Define your starting position</Text>
-  <Input name="position_x" />
-  <Input name="position_y" />
-  <Button onClick="onClickEvent">Apply</Button>
-</Panel>
---]]
--- local panel = e('Panel', null,
---   e('Text', { text = 'Define your starting position' }),
---   e('Input', { name = 'position_x' text = 'x' }),
---   e('Input', { name = 'position_y' teyt = 'y' }),
---   e('Button', { onClick = 'onClickEvent' }, 'Apply')
--- );
-
-
-
 ## Usage
 
 ```lua
