@@ -1,17 +1,9 @@
 local inspect = require('mk/uic/lib/inspect');
-local uuid = 0;
+local World = require('mk/uic/lib/components/World');
+local Div = require('mk/uic/lib/components/Div');
+local TextNode = require('mk/uic/lib/components/TextNode');
+local Input = require('mk/uic/lib/components/Input');
 
-local function ReactElement(type, key, props)
-  local element = {
-    typeof = 'UI_ELEMENT_TYPE',
-    -- Built-in properties that belong on the element
-    type = type,
-    key = key,
-    props = props
-  };
-
-  return element;
-end;
 
 -- Modeled after React.createElement
 --
@@ -20,30 +12,34 @@ end;
 --   [props],
 --   [...children]
 -- )
-local function createElement(type, props, childrens)
-  props = props or {};
-  childrens = childrens or {};
-  uuid = uuid + 1;
-  local key = props.key or ('key_' .. uuid);
+--
+-- function createElement(type, props, root) {
+--
+--   const COMPONENTS = {
+--     ROOT: () => new WordDocument(),
+--     TEXT: () => new Text(root, props),
+--     DOCUMENT: () => new Document(root, props),
+--     default: undefined,
+--   };
+--
+--   return COMPONENTS[type]() || COMPONENTS.default;
+-- }
 
-  -- Children can be more than one argument, and those are transferred onto
-  -- the newly allocated props object.
-  local childrenLength = #childrens;
-  if childrenLength == 1 then
-    props.children = children;
-  elseif childrenLength > 1 then
-    local childs = {}
-    for i, child in ipairs(childrens) do
-      childs[i] = child;
-    end;
-    props.children = childs;
-  end;
 
-  return ReactElement(
-    type,
-    key,
-    props
-  );
+local function createReactElement(type, props, root)
+  local COMPONENTS = {
+    ROOT = function() return World:new() end,
+    DIV = function() return Div:new(root, props) end,
+    TEXT = function() return TextNode:new(root, props) end,
+    INPUT = function() return Input:new(root, props) end,
+    default = nil
+  };
+
+  -- print('Initializing component of type', type);
+  return COMPONENTS[type]() or COMPONENTS.default;
 end;
 
-return createElement;
+
+return {
+  createReactElement = createReactElement
+};

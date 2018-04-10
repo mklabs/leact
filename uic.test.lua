@@ -88,8 +88,11 @@ assert(el.key, 'el is not nil');
 -- assert(el.key, 'el is not nil');
 
 -- render API
--- assert(render, 'render function is defined')
--- assert(render(el), 'rendered');
+local renderEl = e('foo')
+local rendered = render(renderEl);
+print(inspect(rendered.el));
+assert(rendered, 'rendered OK');
+assert(rendered.el, 'rendered el');
 
 -- print(inspect(el));
 
